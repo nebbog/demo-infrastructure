@@ -1,0 +1,15 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  namespace: nebbog-dev
+  name: demo-app-pipeline
+spec:
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/nebbog/openshift-demo-app'
+      ref: main
+    contextDir: ''
+  strategy:
+    jenkinsPipelineStrategy:
+      jenkinsfilePath: ci-cd/jenkins/Jenkinsfile

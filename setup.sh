@@ -2,6 +2,7 @@
 set -x
 AGENTSA=jenkins-agent
 NAMESPACE=nebbog-dev
+DEMOTEMPLATE="demo-cicd-template.yaml"
 
 isAgentSa=$(oc -n ${NAMESPACE} get sa ${AGENTSA})
 if [[ -z ${isAgentSa} ]];then
@@ -23,3 +24,4 @@ if [[ -z ${isJenkinsService} ]];then
   oc new-app jenkins-ephemeral -n ${NAMESPACE} 
 fi
 
+oc -n ${NAMESPACE} apply -f ${DEMOTEMPLATE} 
